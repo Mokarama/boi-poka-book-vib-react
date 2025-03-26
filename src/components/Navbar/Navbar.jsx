@@ -1,8 +1,9 @@
+import { NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
     const links =<>
-         <li><a className="text-green-600 border-2">Home</a></li>
+         <li className="text-green-600 border-2"><NavLink to="/">Home</NavLink></li>
           <li><a >Listed Books</a></li>
           <li><a>Pages to Read</a></li>
          
