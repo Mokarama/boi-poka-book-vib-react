@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import { addToStoredReadList, addToStoredWhiseList } from '../../Utility/addToDb';
 
 const BookDetail = () => {
     // const param =useParams();
@@ -17,6 +18,27 @@ const BookDetail = () => {
     // console.log(book);
 
     const {image,bookName,author,review,tags,totalPages,publisher,yearOfPublishing,rating} =book;
+
+    const handleMarkAsRead =(id)=>{
+        /**
+         * 1.understand what to store or save: =>bookId
+         * 2.where to store: database
+         * 3.array, list, collection:
+         * 4.check:iF the book is already in the readList.
+         * 5.iF not, then add the book to the list
+         * 6.iF yes, do not add the book
+         * 
+         */
+
+        addToStoredReadList(id);
+    }
+
+
+    const handleMakeAsWishlist =(id)=>{
+
+       addToStoredWhiseList(id)
+
+    }
     return (
         <div>
             {/* <h2>Book Details:{bookId}</h2> */}
@@ -53,8 +75,8 @@ const BookDetail = () => {
                     </div>
                 </section>
                       <div className='flex gap-10'>
-                      <button className="btn border-2 border-gray-200 px-12">Read</button>
-                      <button className="btn bg-[#50B1C9] px-12 text-white">Wishlist</button>
+                      <button onClick={()=>handleMarkAsRead(bookId)} className="btn btn-outline btn-accent px-12">Mark As Read</button>
+                      <button onClick={()=>handleMakeAsWishlist(bookId)} className="btn bg-[#50B1C9] px-12 text-white">Add To Wishlist</button>
                       </div>
                     </div>
                 </div>
